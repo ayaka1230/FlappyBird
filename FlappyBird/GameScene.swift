@@ -383,31 +383,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // アイテムを生成するアクションを作成
         let createItemAnimation = SKAction.run({
-            let item = SKNode()
-            // アイテムのノードを乗せるノードを作成
-            item.position = CGPoint(x: self.frame.size.width + itemTexture.size().width / 2, y: 0)
-            item.zPosition = -30 // 壁より手前、地面より奥
-            
             // ランダム値を生成
             let random_y = CGFloat.random(in: 0..<item_position_range)
             // アイテムのY座標を決定
             let item_y = under_item_lowest_y + random_y
             
             // アイテムを作成
-            let itemSprite = SKSpriteNode(texture: itemTexture)
-            itemSprite.position = CGPoint(x: 0, y: item_y)
+            let item = SKSpriteNode(texture: itemTexture)
+            item.position = CGPoint(x: self.frame.size.width + itemTexture.size().width / 2, y: item_y)
             
-            // スプライトに物理演算を設定する
-            itemSprite.physicsBody = SKPhysicsBody(rectangleOf: itemTexture.size())
-            itemSprite.physicsBody?.isDynamic = false
-            itemSprite.physicsBody?.categoryBitMask = self.itemCategory
-            itemSprite.physicsBody?.contactTestBitMask = self.birdCategory
-            
-            item.addChild(itemSprite)
+            // 物理演算を設定
+            item.physicsBody = SKPhysicsBody(rectangleOf: itemTexture.size())
+            item.physicsBody?.isDynamic = false
+            item.physicsBody?.categoryBitMask = self.itemCategory
+            item.physicsBody?.contactTestBitMask = self.birdCategory
+            item.zPosition = -30
             
             item.run(itemAnimation)
             self.itemNode.addChild(item)
-            
         })
         
         // 次のアイテム作成までの時間待ちのアクションを作成
