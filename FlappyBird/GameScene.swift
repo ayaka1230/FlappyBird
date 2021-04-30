@@ -39,6 +39,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let sound = NSDataAsset(name: "sound") {
             player = try? AVAudioPlayer(data: sound.data)
         }
+        player?.prepareToPlay()
         
         // 重力を設定
         physicsWorld.gravity = CGVector(dx: 0, dy: -4)
