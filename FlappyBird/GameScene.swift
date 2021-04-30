@@ -146,6 +146,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bird.zRotation = 0
         
         wallNode.removeAllChildren()
+        itemNode.removeAllChildren()
         
         bird.speed = 1
         scrollNode.speed = 1
