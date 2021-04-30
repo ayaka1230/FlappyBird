@@ -404,7 +404,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         })
         
         // 次のアイテム作成までの時間待ちのアクションを作成
-        let waitAnimation = SKAction.wait(forDuration: 3.3)
+        let waitAnimation = SKAction.wait(forDuration: 2.3)
         
         // アイテム作成 -> 時間待ち -> アイテム作成を無限に繰り返すアクションを作成
         let repeatForeverAnimation = SKAction.repeatForever(SKAction.sequence([waitAnimation, createItemAnimation]))
